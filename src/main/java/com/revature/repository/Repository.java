@@ -25,6 +25,11 @@ public class Repository {
     }
   }
   
+  public static void setStaticsForTest(Logger l, Connection c) {
+    log = l;
+    conn = c;
+  }
+  
   // Checks database if contains userName.
   public static boolean doesUserExist(String userName) throws DatabaseNotFoundException {
     try {
