@@ -64,6 +64,7 @@ public class Repository {
       log.error("SQLException at addUser with userName" + userName);
       throw new DatabaseNotFoundException();
     }
+    log.info("Successfully created account for " + userName);
     return;
   }
 
@@ -81,6 +82,7 @@ public class Repository {
       if (usersWithUserName > 0) {
         return true;
       } else {
+        log.warn("Failed login for " + userName);
         return false;
       }
     } catch (SQLException e) {
@@ -113,6 +115,7 @@ public class Repository {
       throw new InvalidAmountException(); 
     }
     setBalance(userName, bal - amount);
+    log.info("Withdrew " + amount + " from " + userName + ".");
     addTransaction(userName, -amount);
   }
 
@@ -125,6 +128,7 @@ public class Repository {
       throw new InvalidAmountException(); 
     }
     setBalance(userName, bal + amount);
+    log.info("Deposited " + amount + " to " + userName + ".");
     addTransaction(userName, amount);
   }
   
